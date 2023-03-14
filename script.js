@@ -6,22 +6,28 @@ let playerChoices = document.getElementsByClassName("player-button");
 let numberOfRounds = 5;
 let playerChoice;
 let computerChoice;
+let roundNumber
 
 
 
 for (let i = 0; i < playerChoices.length; i++) {
     playerChoices[i].addEventListener("click", () => {
-        game(grabComputerChoice, grabPlayerChoice, numberOfRounds, i);
+        game(grabComputerChoice, grabPlayerChoice, i);
     })
 }
 
-function game(grabComputerChoice, grabPlayerChoice, numberOfRounds, i) {
+function game(grabComputerChoice, grabPlayerChoice, i) {
+    
     if(numberOfRounds > 0) {
         computerChoice = grabComputerChoice();
         playerChoice = grabPlayerChoice(i);
         determineWinner(computerChoice, playerChoice)
+        numberOfRounds--
+        roundDisplay.innerHTML = numberOfRounds
     }
+    
 }
+
 
 
 
@@ -44,23 +50,31 @@ function grabPlayerChoice(i) {
 }
 
 function determineWinner(computerChoice, playerChoice) {
+    displayChoices(computerChoice, playerChoice)
     if(computerChoice === "paper" && playerChoice === "rock") {
-        resultDisplay.innerHTML = "Computer Wins"
+        return resultDisplay.innerHTML = "Computer Wins"
     }
     if(computerChoice === "rock" && playerChoice === "paper") {
-        resultDisplay.innerHTML = "Player Wins"
+        return resultDisplay.innerHTML = "Player Wins"
     }
     if(computerChoice === "scissors" && playerChoice === "paper") {
-        resultDisplay.innerHTML = "Computer Wins"
+        return resultDisplay.innerHTML = "Computer Wins"
     }
     if(computerChoice === "paper" && playerChoice === "scissors") {
-        resultDisplay.innerHTML = "Player Wins"
+        return resultDisplay.innerHTML = "Player Wins"
     }
     if(computerChoice === "rock" && playerChoice === "scissors") {
-        resultDisplay.innerHTML = "Computer Wins"
+        return resultDisplay.innerHTML = "Computer Wins"
     }
     if(computerChoice === "scissors" && playerChoice === "rock") {
-        resultDisplay.innerHTML = "Player Wins"
+        return resultDisplay.innerHTML = "Player Wins"
     }
+    if(computerChoice === playerChoice) {
+        return resultDisplay.innerHTML = "A Draw"
+    }
+}
 
+function displayChoices(computerChoice, playerChoice) {
+    computerChoiceDisplay.innerHTML = computerChoice
+    playerChoiceDisplay.innerHTML = playerChoice
 }
