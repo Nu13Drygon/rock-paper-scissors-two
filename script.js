@@ -7,7 +7,7 @@ let playAgainBtn = document.getElementsByClassName("play-again-button")
 let numberOfRounds = 5;
 let playerChoice;
 let computerChoice;
-let roundNumber
+let roundNumber;
 
 
 
@@ -24,9 +24,9 @@ function game(grabComputerChoice, grabPlayerChoice, i) {
     if(numberOfRounds > 0) {
         computerChoice = grabComputerChoice();
         playerChoice = grabPlayerChoice(i);
-        determineWinner(computerChoice, playerChoice)
-        numberOfRounds--
-        roundDisplay.innerHTML = numberOfRounds
+        determineWinner(computerChoice, playerChoice);
+        numberOfRounds--;
+        roundDisplay.innerHTML = numberOfRounds;
     }
     
 }
@@ -76,11 +76,11 @@ function determineWinner(computerChoice, playerChoice) {
 }
 
 function displayChoices(computerChoice, playerChoice) {
-    computerChoiceDisplay.innerHTML = computerChoice
-    playerChoiceDisplay.innerHTML = playerChoice
+    computerChoiceDisplay.innerHTML = computerChoice;
+    playerChoiceDisplay.innerHTML = playerChoice;
 }
 
 function playAgain() {
-    numberOfRounds = 5
-    roundDisplay.innerHTML = numberOfRounds
+    numberOfRounds = 5;
+    roundDisplay.innerHTML = numberOfRounds;
 }
