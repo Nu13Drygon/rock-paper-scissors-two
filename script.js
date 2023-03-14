@@ -31,9 +31,6 @@ function game(grabComputerChoice, grabPlayerChoice, i) {
     
 }
 
-
-
-
 function grabComputerChoice() {
     let choiceOfComputer = Math.floor(Math.random() * 3)
     switch (choiceOfComputer) {
@@ -48,6 +45,7 @@ function grabComputerChoice() {
     }
 }
 
+// uses i from for loop to grab correct player Button
 function grabPlayerChoice(i) {
     return playerChoices[i].innerHTML;
 }
