@@ -4,6 +4,7 @@ let playerChoiceDisplay = document.getElementById("player-choice-display");
 let resultDisplay = document.getElementById("result-display");
 let playerChoices = document.getElementsByClassName("player-button");
 let playAgainBtn = document.getElementsByClassName("play-again-button")
+let gameResult = document.getElementById("game-result")
 let numberOfRounds = 5;
 let playerChoice;
 let computerChoice;
@@ -31,8 +32,20 @@ function game(grabComputerChoice, grabPlayerChoice, i) {
         playerChoice = grabPlayerChoice(i);
         determineWinner(computerChoice, playerChoice);
         numberOfRounds--;
-        roundDisplay.innerHTML = numberOfRounds;
+        roundDisplay.textContent = numberOfRounds;
+        
         if(numberOfRounds === 0) {
+
+            if(roundWins.computer === roundWins.player) {
+                console.log('draw')
+            }
+            else if(roundWins.computer > roundWins.player) {
+                console.log('computer')
+            }
+            else {
+                console.log('player')
+            }
+
             console.log(roundWins)
         }
     }
@@ -54,44 +67,44 @@ function grabComputerChoice() {
 
 // uses i from for loop to grab correct player Button
 function grabPlayerChoice(i) {
-    return playerChoices[i].innerHTML;
+    return playerChoices[i].textContent;
 }
 
 function determineWinner(computerChoice, playerChoice) {
     displayChoices(computerChoice, playerChoice)
     if(computerChoice === "paper" && playerChoice === "rock") {
         roundWins.computer++
-        return resultDisplay.innerHTML = "Computer Wins"
+        return resultDisplay.textContent = "Computer Wins"
     }
     if(computerChoice === "rock" && playerChoice === "paper") {
         roundWins.player++
-        return resultDisplay.innerHTML = "Player Wins"
+        return resultDisplay.textContent = "Player Wins"
     }
     if(computerChoice === "scissors" && playerChoice === "paper") {
         roundWins.computer++
-        return resultDisplay.innerHTML = "Computer Wins"
+        return resultDisplay.textContent = "Computer Wins"
     }
     if(computerChoice === "paper" && playerChoice === "scissors") {
         roundWins.player++
-        return resultDisplay.innerHTML = "Player Wins"
+        return resultDisplay.textContent = "Player Wins"
     }
     if(computerChoice === "rock" && playerChoice === "scissors") {
         roundWins.computer++
-        return resultDisplay.innerHTML = "Computer Wins"
+        return resultDisplay.textContent = "Computer Wins"
     }
     if(computerChoice === "scissors" && playerChoice === "rock") {
         roundWins.player++
-        return resultDisplay.innerHTML = "Player Wins"
+        return resultDisplay.textContent = "Player Wins"
     }
     if(computerChoice === playerChoice) {
         roundWins.draw++
-        return resultDisplay.innerHTML = "A Draw"
+        return resultDisplay.textContent = "A Draw"
     }
 }
 
 function displayChoices(computerChoice, playerChoice) {
-    computerChoiceDisplay.innerHTML = computerChoice;
-    playerChoiceDisplay.innerHTML = playerChoice;
+    computerChoiceDisplay.textContent = computerChoice;
+    playerChoiceDisplay.textContent = playerChoice;
 }
 
 function playAgain() {
@@ -99,5 +112,5 @@ function playAgain() {
     roundWins.player = 0
     roundWins.draw = 0
     numberOfRounds = 5;
-    roundDisplay.innerHTML = numberOfRounds;
+    roundDisplay.textContent = numberOfRounds;
 }
