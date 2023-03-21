@@ -45,7 +45,7 @@ function game(grabComputerChoice, grabPlayerChoice, i) {
             else {
                 gameResult.textContent = 'Player wins the game!!!'
             }
-            resultDisplay.textContent = ''
+            resultDisplay.textContent = '' 
 
         }
     }
