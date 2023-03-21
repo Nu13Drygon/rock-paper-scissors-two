@@ -8,6 +8,11 @@ let numberOfRounds = 5;
 let playerChoice;
 let computerChoice;
 let roundNumber;
+const roundWins = {
+    'computer': 0,
+    'player': 0, 
+    'draw': 0
+}
 
 
 
@@ -27,8 +32,10 @@ function game(grabComputerChoice, grabPlayerChoice, i) {
         determineWinner(computerChoice, playerChoice);
         numberOfRounds--;
         roundDisplay.innerHTML = numberOfRounds;
+        if(numberOfRounds === 0) {
+            console.log(roundWins)
+        }
     }
-    
 }
 
 function grabComputerChoice() {
@@ -53,24 +60,31 @@ function grabPlayerChoice(i) {
 function determineWinner(computerChoice, playerChoice) {
     displayChoices(computerChoice, playerChoice)
     if(computerChoice === "paper" && playerChoice === "rock") {
+        roundWins.computer++
         return resultDisplay.innerHTML = "Computer Wins"
     }
     if(computerChoice === "rock" && playerChoice === "paper") {
+        roundWins.player++
         return resultDisplay.innerHTML = "Player Wins"
     }
     if(computerChoice === "scissors" && playerChoice === "paper") {
+        roundWins.computer++
         return resultDisplay.innerHTML = "Computer Wins"
     }
     if(computerChoice === "paper" && playerChoice === "scissors") {
+        roundWins.player++
         return resultDisplay.innerHTML = "Player Wins"
     }
     if(computerChoice === "rock" && playerChoice === "scissors") {
+        roundWins.computer++
         return resultDisplay.innerHTML = "Computer Wins"
     }
     if(computerChoice === "scissors" && playerChoice === "rock") {
+        roundWins.player++
         return resultDisplay.innerHTML = "Player Wins"
     }
     if(computerChoice === playerChoice) {
+        roundWins.draw++
         return resultDisplay.innerHTML = "A Draw"
     }
 }
@@ -81,6 +95,9 @@ function displayChoices(computerChoice, playerChoice) {
 }
 
 function playAgain() {
+    roundWins.computer = 0
+    roundWins.player = 0
+    roundWins.draw = 0
     numberOfRounds = 5;
     roundDisplay.innerHTML = numberOfRounds;
 }
