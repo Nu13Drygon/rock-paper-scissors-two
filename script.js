@@ -37,16 +37,16 @@ function game(grabComputerChoice, grabPlayerChoice, i) {
         if(numberOfRounds === 0) {
 
             if(roundWins.computer === roundWins.player) {
-                console.log('draw')
+                gameResult.textContent = 'The game is a Draw!!!'
             }
             else if(roundWins.computer > roundWins.player) {
-                console.log('computer')
+                gameResult.textContent = 'Computer wins the game!!!'
             }
             else {
-                console.log('player')
+                gameResult.textContent = 'Player wins the game!!!'
             }
+            resultDisplay.textContent = ''
 
-            console.log(roundWins)
         }
     }
 }
@@ -108,9 +108,10 @@ function displayChoices(computerChoice, playerChoice) {
 }
 
 function playAgain() {
-    roundWins.computer = 0
-    roundWins.player = 0
-    roundWins.draw = 0
+    for (const key in roundWins) {
+        {key: roundWins[key] = 0}
+    }
     numberOfRounds = 5;
     roundDisplay.textContent = numberOfRounds;
+    gameResult.textContent = ''
 }
